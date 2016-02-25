@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225194254) do
+ActiveRecord::Schema.define(version: 20160225201559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "doses", force: :cascade do |t|
+    t.string   "label"
+    t.integer  "size"
+    t.time     "time"
+    t.integer  "user_id"
+    t.integer  "medicine_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "doses", ["medicine_id"], name: "index_doses_on_medicine_id", using: :btree
+  add_index "doses", ["user_id"], name: "index_doses_on_user_id", using: :btree
 
   create_table "medicines", force: :cascade do |t|
     t.string   "name"
@@ -37,4 +50,6 @@ ActiveRecord::Schema.define(version: 20160225194254) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["token"], name: "index_users_on_token", unique: true, using: :btree
 
+  add_foreign_key "doses", "medicines"
+  add_foreign_key "doses", "users"
 end
