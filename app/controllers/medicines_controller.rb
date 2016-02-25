@@ -1,4 +1,4 @@
-class MedicinesController < ApplicationController
+class MedicinesController < ProtectedController
   before_action :set_medicine, only: [:show, :update, :destroy]
 
   # GET /medicines
