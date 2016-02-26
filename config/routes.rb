@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   # get '/prescriptions' => 'medicines#usermeds'
   resources :medicines, only: [:index, :create, :destroy]
+
+  resources :doses, only: [:index, :create, :update, :destroy]
 end
