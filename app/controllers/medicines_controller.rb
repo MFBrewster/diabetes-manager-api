@@ -1,5 +1,5 @@
 class MedicinesController < ProtectedController
-  before_action :medicine_params, only: [:index, :create, :destroy, :usermeds]
+  before_action :medicine_params, only: [:create, :destroy, :usermeds]
   before_action :set_medicine, only: [:show, :destroy, :usermeds]
 
   # GET /medicines
