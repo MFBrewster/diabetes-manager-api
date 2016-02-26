@@ -1,6 +1,6 @@
 class MedicinesController < ProtectedController
-  before_action :medicine_params, only: [:create, :destroy, :usermeds]
-  before_action :set_medicine, only: [:show, :destroy, :usermeds]
+  before_action :medicine_params, only: [:create]
+  before_action :set_medicine, only: [:destroy]
 
   # GET /medicines
   # GET /medicines.json
@@ -62,9 +62,4 @@ class MedicinesController < ProtectedController
     def medicine_params
        params.require(:medicines).permit(:name, :unit_name, :notes)
     end
-
-    # def user_creds
-    #   params.require(:credentials)
-    #     .permit(:email, :password, :password_confirmation)
-    # end
 end
