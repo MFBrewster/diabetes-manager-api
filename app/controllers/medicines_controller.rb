@@ -1,5 +1,6 @@
 class MedicinesController < ProtectedController
-  before_action :set_medicine, only: [:show, :update, :destroy]
+  before_action :medicine_params, only: [:index, :create, :destroy, :usermeds]
+  before_action :set_medicine, only: [:show, :destroy, :usermeds]
 
   # GET /medicines
   # GET /medicines.json
@@ -11,9 +12,12 @@ class MedicinesController < ProtectedController
 
   # GET /medicines/1
   # GET /medicines/1.json
-  def show
-    render json: @medicine
-  end
+
+  # DON'T NEED SHOW FOR NOW, LEAVING CODE IN CASE I NEED IT LATER
+
+  # def show
+  #   render json: @medicine
+  # end
 
   # POST /medicines
   # POST /medicines.json
@@ -29,15 +33,18 @@ class MedicinesController < ProtectedController
 
   # PATCH/PUT /medicines/1
   # PATCH/PUT /medicines/1.json
-  def update
-    @medicine = Medicine.find(params[:id])
 
-    if @medicine.update(medicine_params)
-      head :no_content
-    else
-      render json: @medicine.errors, status: :unprocessable_entity
-    end
-  end
+  # DON'T NEED UPDATE FOR NOW, LEAVING CODE IN CASE I NEED IT LATER
+
+  # def update
+  #   @medicine = Medicine.find(params[:id])
+  #
+  #   if @medicine.update(medicine_params)
+  #     head :no_content
+  #   else
+  #     render json: @medicine.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # DELETE /medicines/1
   # DELETE /medicines/1.json
@@ -48,12 +55,16 @@ class MedicinesController < ProtectedController
   end
 
   private
-
     def set_medicine
       @medicine = Medicine.find(params[:id])
     end
 
     def medicine_params
-      params[:medicine]
+       params.require(:medicines).permit(:name, :unit_name, :notes)
     end
+
+    # def user_creds
+    #   params.require(:credentials)
+    #     .permit(:email, :password, :password_confirmation)
+    # end
 end
