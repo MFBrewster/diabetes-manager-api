@@ -1,3 +1,3 @@
 class DoseSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :size
 end

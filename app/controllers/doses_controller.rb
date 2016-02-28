@@ -1,6 +1,6 @@
 class DosesController < ProtectedController
+  before_action :dose_params, only: [:update, :create]
   before_action :set_dose, only: [:show, :update, :destroy]
-  before_action :dose_strong_params, only: [:create]
 
   # GET /doses
   # GET /doses.json
@@ -19,7 +19,7 @@ class DosesController < ProtectedController
   # POST /doses
   # POST /doses.json
   def create
-    @dose = Dose.new(dose_strong_params)
+    @dose = Dose.new(dose_params)
 
     if @dose.save
       render json: @dose, status: :created, location: @dose
@@ -54,11 +54,7 @@ class DosesController < ProtectedController
       @dose = Dose.find(params[:id])
     end
 
-    def dose_strong_params
-      params.require(:doses).permit(:label, :size, :time, :user_id, :medicine_id)
-    end
-
     def dose_params
-      params[:doses]
+      params.require(:doses).permit(:label, :size, :time, :user_id, :medicine_id)
     end
 end
