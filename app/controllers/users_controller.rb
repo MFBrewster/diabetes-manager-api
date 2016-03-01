@@ -44,6 +44,12 @@ class UsersController < ProtectedController
     end
   end
 
+  # returns array of all medicines for a particular user
+  def listmeds
+    user = User.find(params[:id])
+    render json: user.medicines
+  end
+
   def index
     render json: User.all
   end

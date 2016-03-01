@@ -1,3 +1,3 @@
 class MedicineSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name, :unit_name, :notes, :created_at, :updated_at
 end

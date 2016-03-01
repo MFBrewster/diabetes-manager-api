@@ -54,6 +54,10 @@ class MedicinesController < ProtectedController
     head :no_content
   end
 
+  def usermeds
+    
+  end
+
   private
     def set_medicine
       @medicine = Medicine.find(params[:id])
