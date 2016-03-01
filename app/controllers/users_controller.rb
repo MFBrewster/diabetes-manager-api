@@ -50,6 +50,11 @@ class UsersController < ProtectedController
     render json: user.medicines
   end
 
+  def listdoses
+    user = User.find(params[:id])
+    render json: user.doses
+  end
+
   def index
     render json: User.all
   end
