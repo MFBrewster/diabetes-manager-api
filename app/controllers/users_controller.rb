@@ -52,6 +52,9 @@ class UsersController < ProtectedController
 
   def listdoses
     user = User.find(params[:id])
+    user.doses.each do |obj|
+      obj.medicine = Medicine.find(obj.medicine_id)
+    end
     render json: user.doses
   end
 

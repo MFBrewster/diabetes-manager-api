@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   get '/doses/:id' => 'users#listdoses'
   resources :users, only: [:index, :show]
 
-
   resources :medicines, only: [:index, :create, :destroy]
 
   resources :doses, only: [:index, :create, :update, :destroy]
