@@ -12,6 +12,11 @@ group :production do
   gem 'rails_12factor', '~> 0.0.3'
 end
 
+# group :production do
+#      gem 'rails_12factor'
+#      gem 'puma'
+# end
+
 group :development, :test do
   gem 'pry', '~> 0.10'
   gem 'byebug', '~> 8.0'
