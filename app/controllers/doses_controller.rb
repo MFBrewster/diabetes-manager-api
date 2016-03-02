@@ -12,9 +12,9 @@ class DosesController < ProtectedController
 
   # GET /doses/1
   # GET /doses/1.json
-  # def show
-  #   render json: @dose
-  # end
+  def show
+    render json: @dose
+  end
 
   # POST /doses
   # POST /doses.json

@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   delete '/sign-out/:id' => 'users#signout'
   patch '/change-password/:id' => 'users#changepw'
   get '/prescriptions/:id' => 'users#listmeds'
-  get '/doses/:id' => 'users#listdoses'
+  get '/doses/user/:id' => 'users#listdoses'
   resources :users, only: [:index, :show]
 
   resources :medicines, only: [:index, :create, :destroy]
 
-  resources :doses, only: [:index, :create, :update, :destroy]
+  resources :doses, only: [:index, :create, :update, :destroy, :show]
 end
