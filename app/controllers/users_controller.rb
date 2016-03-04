@@ -46,16 +46,7 @@ class UsersController < ProtectedController
 
   # returns array of all medicines for a particular user
   def listmeds
-    user = User.find(params[:id])
-    render json: user.medicines
-  end
-
-  def listdoses
-    user = User.find(params[:id])
-    user.doses.each do |obj|
-      obj.medicine = Medicine.find(obj.medicine_id)
-    end
-    render json: user.doses
+    render json: current_user.medicines
   end
 
   def index
@@ -63,8 +54,8 @@ class UsersController < ProtectedController
   end
 
   def show
-    user = User.find(params[:id])
-    render json: user
+
+    render json: current_user
   end
 
   def update

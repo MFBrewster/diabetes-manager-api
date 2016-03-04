@@ -5,8 +5,10 @@ class DosesController < ProtectedController
   # GET /doses
   # GET /doses.json
   def index
-    @doses = Dose.all
-
+    @doses = current_user.doses
+    @doses.each do |obj|
+      obj.medicine = Medicine.find(obj.medicine_id)
+    end
     render json: @doses
   end
 
@@ -19,7 +21,7 @@ class DosesController < ProtectedController
   # POST /doses
   # POST /doses.json
   def create
-    @dose = Dose.new(dose_params)
+    @dose = current_user.doses.build(dose_params)
 
     if @dose.save
       render json: @dose, status: :created, location: @dose
@@ -31,8 +33,6 @@ class DosesController < ProtectedController
   # PATCH/PUT /doses/1
   # PATCH/PUT /doses/1.json
   def update
-    @dose = Dose.find(params[:id])
-
     if @dose.update(dose_params)
       head :no_content
     else
@@ -51,7 +51,7 @@ class DosesController < ProtectedController
   private
 
     def set_dose
-      @dose = Dose.find(params[:id])
+      @dose = current_user.doses.find(params[:id])
     end
 
     def dose_params
